@@ -37,7 +37,8 @@ pipeline {
       steps{
         echo "------------>Clean<------------"
 	    dir("microservicio") {
-            sh 'gradle --b ./build.gradle clean'
+            sh 'chmod +x ./gradlew'
+            sh './gradlew --b ./build.gradle clean'
 	    }
       }
     }
@@ -46,8 +47,10 @@ pipeline {
       steps{
         echo "------------>Unit Tests<------------"
 	    dir("microservicio") {
-            sh 'gradle --b ./build.gradle clean'
-            sh 'gradle --b ./build.gradle jacocoTestReport'
+            sh 'chmod +x ./gradlew'
+            sh './gradlew --b ./build.gradle clean'
+            sh './gradlew --b ./build.gradle test'
+            sh './gradlew --b ./build.gradle jacocoTestReport'
 	    }
       }
     }
@@ -65,7 +68,7 @@ pipeline {
       steps {
         echo "------------>Build<------------"
 	    dir("microservicio") {
-	        sh 'gradle --b ./build.gradle build -x test'
+	        sh './gradlew --b ./build.gradle test'
 	    }
       }
     }
