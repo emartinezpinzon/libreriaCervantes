@@ -27,7 +27,7 @@ pipeline {
 			submoduleCfg: [],
 			userRemoteConfigs: [[
 				credentialsId: 'GitHub_emartinezpinzon',
-				url:'https://github.com/emartinezpinzon/libreriaCervantes-ADN.git'
+				url:'https://github.com/emartinezpinzon/libreriaCervantes.git'
 			]]
 		])
       }
