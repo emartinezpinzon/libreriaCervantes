@@ -5,3 +5,14 @@ create table usuario (
  fecha_creacion datetime null,
  primary key (id)
 );
+
+create table libro (
+ id int(11) not null auto_increment,
+ titulo varchar(100) not null,
+ categoria varchar(100) not null,
+ distribucion varchar(40) not null,
+ disponibles int(10) not null,
+ precio double(10) not null,
+
+ primary key (id)
+);
