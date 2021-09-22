@@ -26,11 +26,19 @@ public interface RepositorioLibro {
     void eliminar(Long id);
 
     /**
-     * Permite validar si existe un usuario con un nombre
+     * Permite validar si existe un libro con un titulo
      *
      * @param titulo
-     * @return
+     * @return si existe o no
      */
     boolean existe(String titulo);
 
+    /**
+     * Permite validar si existe un libro excluyendo un id
+     *
+     * @param id
+     * @param titulo
+     * @return si existe o no
+     */
+    boolean existeExcluyendoId(Long id, String titulo);
 }
