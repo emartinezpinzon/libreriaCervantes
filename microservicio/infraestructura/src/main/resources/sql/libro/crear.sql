@@ -1,0 +1,1 @@
+insert into libro (titulo, categoria, distribucion, disponibles, precio) values (:titulo, :categoria, :distribucion, :disponibles, :precio)
