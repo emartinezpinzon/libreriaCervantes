@@ -1,6 +1,7 @@
 package com.ceiba.libro.servicio;
 
 import com.ceiba.BasePrueba;
+
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.libro.modelo.entidad.Libro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
@@ -9,6 +10,7 @@ import org.junit.Test;
 import org.mockito.Mockito;
 
 public class ServicioActualizarLibroTest {
+
     @Test
     public void validarLibroExistenciaPreviaTest() {
         // Arrange
@@ -18,7 +20,7 @@ public class ServicioActualizarLibroTest {
         ServicioActualizarLibro servicioActualizarLibro = new ServicioActualizarLibro(repositorioLibro);
 
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioActualizarLibro.ejecutar(libro), ExcepcionDuplicidad.class, "Algo");
+        BasePrueba.assertThrows(() -> servicioActualizarLibro.ejecutar(libro), ExcepcionDuplicidad.class, "El usuario ya existe en el sistema");
     }
 
 }
