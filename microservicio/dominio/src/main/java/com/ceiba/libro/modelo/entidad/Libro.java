@@ -14,7 +14,7 @@ public class Libro {
     private static final String DEBE_SER_CERO_O_POSITIVO = "Las cantidades disponibles no pueden ser negativas";
     private static final String DEBE_SER_POSITIVO = "El precio debe ser un valor positivo";
 
-    private static final long DISPONIBLE_NO_PERMITIDO = -1;
+    private static final long DISPONIBLE_NO_PERMITIDO = 0;
 
     private Long id;
     private String titulo;
