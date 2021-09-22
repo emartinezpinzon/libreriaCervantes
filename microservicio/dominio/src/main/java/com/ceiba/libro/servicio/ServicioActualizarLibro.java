@@ -32,7 +32,8 @@ public class ServicioActualizarLibro {
     private void validarExistenciaPrevia(Libro libro) {
         boolean existe = this.repositorioLibro.existeExcluyendoId(libro.getId(), libro.getTitulo());
 
-        if(existe)
+        if(existe){
             throw new ExcepcionDuplicidad(USUARIO_YA_EXISTE);
+        }
     }
 }

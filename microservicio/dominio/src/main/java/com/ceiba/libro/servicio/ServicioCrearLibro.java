@@ -33,7 +33,8 @@ public class ServicioCrearLibro {
     private void validarExistenciaPrevia(Libro libro) {
         boolean existe = this.repositorioLibro.existe(libro.getTitulo());
 
-        if (existe)
+        if (existe) {
             throw new ExcepcionDuplicidad(USUARIO_YA_EXISTE);
+        }
     }
 }
