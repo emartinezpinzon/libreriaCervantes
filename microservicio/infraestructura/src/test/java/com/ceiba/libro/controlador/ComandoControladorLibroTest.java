@@ -1,4 +1,4 @@
-package com.ceiba.libro.servicio.controlador;
+package com.ceiba.libro.controlador;
 
 public class ComandoControladorLibroTest {
 }
