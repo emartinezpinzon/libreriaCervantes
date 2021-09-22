@@ -3,7 +3,6 @@ package com.ceiba.libro.servicio;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.libro.modelo.entidad.Libro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
-import com.ceiba.usuario.modelo.entidad.Usuario;
 
 public class ServicioActualizarLibro {
     private static final String USUARIO_YA_EXISTE = "El usuario ya existe en el sistema";
