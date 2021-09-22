@@ -2,6 +2,8 @@ package com.ceiba.libro.servicio.testdatabuilder;
 
 import com.ceiba.libro.modelo.entidad.Libro;
 
+import java.util.UUID;
+
 public class LibroTestDataBuilder {
 
     private Long id;
@@ -12,11 +14,11 @@ public class LibroTestDataBuilder {
     private double precio;
 
     public LibroTestDataBuilder() {
-        titulo = "Ficciones";
-        categoria = "Literatura";
-        distribucion = "Internacional";
+        titulo = UUID.randomUUID().toString();
+        categoria = UUID.randomUUID().toString();
+        distribucion = UUID.randomUUID().toString();
         disponibles = 3;
-        precio = 45000;
+        precio = 45000D;
     }
 
     public LibroTestDataBuilder conId(Long id) {
