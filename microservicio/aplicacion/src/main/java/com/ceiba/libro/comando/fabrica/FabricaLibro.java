@@ -1,9 +1,8 @@
 package com.ceiba.libro.comando.fabrica;
 
 import com.ceiba.libro.modelo.entidad.Libro;
-import org.springframework.stereotype.Component;
-
 import com.ceiba.libro.comando.ComandoLibro;
+import org.springframework.stereotype.Component;
 
 @Component
 public class FabricaLibro {

@@ -22,6 +22,6 @@ public class DaoLibroPostgres implements DaoLibro {
 
     @Override
     public List<DtoLibro> listar() {
-        return null;
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().query(sqlListar, new MapeoLibro());
     }
 }

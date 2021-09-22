@@ -4,7 +4,7 @@ import com.ceiba.ComandoRespuesta;
 import com.ceiba.libro.comando.ComandoLibro;
 import com.ceiba.libro.comando.fabrica.FabricaLibro;
 import com.ceiba.libro.modelo.entidad.Libro;
-import com.ceiba.libro.ServicioCrearLibro;
+import com.ceiba.libro.servicio.ServicioCrearLibro;
 import com.ceiba.manejador.ManejadorComandoRespuesta;
 import org.springframework.stereotype.Component;
 

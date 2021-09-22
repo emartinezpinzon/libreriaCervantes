@@ -1,8 +1,8 @@
 package com.ceiba.configuracion;
 
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
-import com.ceiba.libro.ServicioActualizarLibro;
-import com.ceiba.libro.ServicioCrearLibro;
+import com.ceiba.libro.servicio.ServicioActualizarLibro;
+import com.ceiba.libro.servicio.ServicioCrearLibro;
 import com.ceiba.usuario.puerto.repositorio.RepositorioUsuario;
 import com.ceiba.usuario.servicio.ServicioActualizarUsuario;
 import com.ceiba.usuario.servicio.ServicioCrearUsuario;

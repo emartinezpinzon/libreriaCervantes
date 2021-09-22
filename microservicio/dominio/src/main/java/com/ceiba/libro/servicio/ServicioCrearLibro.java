@@ -1,4 +1,4 @@
-package com.ceiba.libro;
+package com.ceiba.libro.servicio;
 
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
 import com.ceiba.libro.modelo.entidad.Libro;

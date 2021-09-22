@@ -1,4 +1,4 @@
-package com.ceiba.libro;
+package com.ceiba.libro.servicio;
 
 import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionDuplicidad;
