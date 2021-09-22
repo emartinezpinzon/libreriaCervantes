@@ -1,1 +1,1 @@
-select * from libro
+select id, titulo, categoria, distribucion, disponibles, precio from libro
