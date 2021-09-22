@@ -27,8 +27,8 @@ public class Libro {
         validarObligatorio(titulo, DEBE_INGRESAR_TITULO);
         validarObligatorio(categoria, DEBE_INGRESAR_CATEGORIA);
         validarObligatorio(distribucion, DEBE_INGRESAR_DISTRIBUCION);
-        //validarMenor(DISPONIBLE_NO_PERMITIDO, (long) disponibles, DEBE_SER_CERO_O_POSITIVO);
-        //validarPositivo(precio, DEBE_SER_POSITIVO);
+        validarMenor(DISPONIBLE_NO_PERMITIDO, (long) disponibles, DEBE_SER_CERO_O_POSITIVO);
+        validarPositivo(precio, DEBE_SER_POSITIVO);
 
         this.id = id;
         this.titulo = titulo;
