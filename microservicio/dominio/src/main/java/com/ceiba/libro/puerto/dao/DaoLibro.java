@@ -10,5 +10,5 @@ public interface DaoLibro {
      *
      * @return un listado de libros
      */
-    List<DtoLibro> obtenerLibros();
+    List<DtoLibro> listar();
 }
