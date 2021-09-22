@@ -20,7 +20,7 @@ public class ServicioActualizarLibroTest {
         ServicioActualizarLibro servicioActualizarLibro = new ServicioActualizarLibro(repositorioLibro);
 
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioActualizarLibro.ejecutar(libro), ExcepcionDuplicidad.class, "El usuario ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioActualizarLibro.ejecutar(libro), ExcepcionDuplicidad.class, "El libro ya existe en el sistema");
     }
 
 }

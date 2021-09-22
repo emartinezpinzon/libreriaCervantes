@@ -5,7 +5,7 @@ import com.ceiba.libro.modelo.entidad.Libro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
 
 public class ServicioActualizarLibro {
-    private static final String USUARIO_YA_EXISTE = "El usuario ya existe en el sistema";
+    private static final String LIBRO_YA_EXISTE = "El libro ya existe en el sistema";
 
     private final RepositorioLibro repositorioLibro;
 
@@ -32,8 +32,7 @@ public class ServicioActualizarLibro {
     private void validarExistenciaPrevia(Libro libro) {
         boolean existe = this.repositorioLibro.existeExcluyendoId(libro.getId(), libro.getTitulo());
 
-        if(existe){
-            throw new ExcepcionDuplicidad(USUARIO_YA_EXISTE);
-        }
+        if(existe)
+            throw new ExcepcionDuplicidad(LIBRO_YA_EXISTE);
     }
 }
