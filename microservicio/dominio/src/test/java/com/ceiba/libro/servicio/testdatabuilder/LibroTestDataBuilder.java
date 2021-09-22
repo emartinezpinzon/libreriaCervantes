@@ -27,6 +27,36 @@ public class LibroTestDataBuilder {
         return this;
     }
 
+    public LibroTestDataBuilder sinTitulo() {
+        this.titulo = null;
+
+        return this;
+    }
+
+    public LibroTestDataBuilder sinCategoria() {
+        this.categoria = null;
+
+        return this;
+    }
+
+    public LibroTestDataBuilder sinDistribucion() {
+        this.distribucion = null;
+
+        return this;
+    }
+
+    public LibroTestDataBuilder conDisponiblesNegativos() {
+        this.disponibles = -1;
+
+        return this;
+    }
+
+    public LibroTestDataBuilder conPrecioCero() {
+        this.precio = 0;
+
+        return this;
+    }
+
     public Libro build() {
         return new Libro(id, titulo, categoria, distribucion, disponibles, precio);
     }
