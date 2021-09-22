@@ -19,13 +19,6 @@ public interface RepositorioLibro {
     void actualizar(Libro libro);
 
     /**
-     * Permite eliminar un libro
-     *
-     * @param id
-     */
-    void eliminar(Long id);
-
-    /**
      * Permite validar si existe un libro con un titulo
      *
      * @param titulo
