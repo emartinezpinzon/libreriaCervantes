@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface DaoLibro {
     /**
-     * Permite listar libros
+     * Permite listar libros de la lista de compras
      *
      * @return un listado de libros
      */
