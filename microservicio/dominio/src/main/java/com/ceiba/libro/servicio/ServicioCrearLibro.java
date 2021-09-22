@@ -36,6 +36,4 @@ public class ServicioCrearLibro {
         if (existe)
             throw new ExcepcionDuplicidad(USUARIO_YA_EXISTE);
     }
-
-
 }
