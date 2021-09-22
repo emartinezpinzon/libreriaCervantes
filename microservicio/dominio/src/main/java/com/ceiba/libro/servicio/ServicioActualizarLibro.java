@@ -25,6 +25,11 @@ public class ServicioActualizarLibro {
         this.repositorioLibro.actualizar(libro);
     }
 
+    /**
+     * Valida la existencia de un titulo excluyendo por id
+     *
+     * @param libro
+     */
     private void validarExistenciaPrevia(Libro libro) {
         boolean existe = this.repositorioLibro.existeExcluyendoId(libro.getId(), libro.getTitulo());
 
