@@ -18,7 +18,6 @@ public class ManejadorCrearCompra implements ManejadorComandoRespuesta<ComandoCo
         this.servicioCrearCompra = servicioCrearCompra;
     }
 
-
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoCompra comando) {
         Compra compra = this.fabricaCompra.crear(comando);
