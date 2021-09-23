@@ -27,6 +27,14 @@ public interface RepositorioLibro {
     boolean existe(String titulo);
 
     /**
+     * Permite validar si existe un libro con su identificador
+     *
+     * @param id
+     * @return si existe o no
+     */
+    boolean existe(Long id);
+
+    /**
      * Permite validar si existe un libro excluyendo un id
      *
      * @param id

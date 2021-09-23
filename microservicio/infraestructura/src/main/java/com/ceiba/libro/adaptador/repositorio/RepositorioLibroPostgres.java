@@ -21,6 +21,9 @@ public class RepositorioLibroPostgres implements RepositorioLibro {
     @SqlStatement(namespace = "libro", value = "existe")
     private static String sqlExiste;
 
+    @SqlStatement(namespace = "libro", value = "existeTitulo")
+    private static String sqlExisteTitulo;
+
     @SqlStatement(namespace = "libro", value = "existeExcluyendoId")
     private static String sqlExisteExcluyendoId;
 
@@ -42,6 +45,14 @@ public class RepositorioLibroPostgres implements RepositorioLibro {
     public boolean existe(String titulo) {
         MapSqlParameterSource parameterSource = new MapSqlParameterSource();
         parameterSource.addValue("titulo", titulo);
+
+        return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExisteTitulo, parameterSource, Boolean.class);
+    }
+
+    @Override
+    public boolean existe(Long id) {
+        MapSqlParameterSource parameterSource = new MapSqlParameterSource();
+        parameterSource.addValue("id", id);
 
         return this.customNamedParameterJdbcTemplate.getNamedParameterJdbcTemplate().queryForObject(sqlExiste, parameterSource, Boolean.class);
     }
