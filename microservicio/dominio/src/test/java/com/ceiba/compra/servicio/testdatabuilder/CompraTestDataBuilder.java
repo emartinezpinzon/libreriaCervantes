@@ -38,6 +38,6 @@ public class CompraTestDataBuilder {
     }
 
     public Compra build() {
-        return new Compra(id, libroId, cantidad, fechaCompra, fechaEntrega);
+        return new Compra(id, libroId, cantidad);
     }
 }
