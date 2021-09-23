@@ -9,14 +9,10 @@ public class CompraTestDataBuilder {
     private Long id;
     private Long libroId;
     private int cantidad;
-    private LocalDate fechaCompra;
-    private LocalDate fechaEntrega;
 
     public CompraTestDataBuilder() {
         libroId = 1L;
         cantidad = 3;
-        fechaCompra = LocalDate.now();
-        fechaEntrega = LocalDate.now().plusDays(5L);
     }
 
     public CompraTestDataBuilder conId(Long id) {
