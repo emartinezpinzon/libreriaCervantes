@@ -21,11 +21,12 @@ public class ServicioCrearCompra {
      * Crea una nueva compra
      *
      * @param compra
+     * @return el id generado de la compra
      */
-    public void ejecutar(Compra compra) {
+    public Long ejecutar(Compra compra) {
         validarExistenciaLibro(compra.getLibroId());
 
-        this.repositorioCompra.crear(compra);
+        return this.repositorioCompra.crear(compra);
     }
 
     /**

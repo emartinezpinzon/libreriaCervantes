@@ -21,6 +21,7 @@ public class ManejadorCrearLibro implements ManejadorComandoRespuesta<ComandoLib
     @Override
     public ComandoRespuesta<Long> ejecutar(ComandoLibro comando) {
         Libro libro = this.fabricaLibro.crear(comando);
+
         return new ComandoRespuesta<>(this.servicioCrearLibro.ejecutar(libro));
     }
 }
