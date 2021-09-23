@@ -1,14 +1,14 @@
 package com.ceiba.compra.puerto.dao;
 
-import com.ceiba.libro.modelo.dto.DtoLibro;
+import com.ceiba.compra.modelo.dto.DtoCompra;
 
 import java.util.List;
 
 public interface DaoCompra {
     /**
-     * Permite listar los libros agregados a la compra
+     * Permite listar toda la compra registrada
      *
      * @return un listado de libros
      */
-    List<DtoLibro> listar();
+    List<DtoCompra> listar();
 }
