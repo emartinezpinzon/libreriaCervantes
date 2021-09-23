@@ -33,7 +33,6 @@ public class ConsultaControladorCompraTest {
         mockMvc.perform(get("/compra")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", IsNull.notNullValue()))
                 .andExpect(jsonPath("$[0].libroId", IsNull.notNullValue()))
                 .andExpect(jsonPath("$[0].cantidad", IsNull.notNullValue()))
