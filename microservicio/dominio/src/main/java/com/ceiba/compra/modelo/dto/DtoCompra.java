@@ -10,4 +10,10 @@ public class DtoCompra {
     private Long libroId;
     private int cantidad;
 
+    private String titulo;
+    private String categoria;
+    private String distribucion;
+    private int disponibles;
+    private double precio;
+
 }
