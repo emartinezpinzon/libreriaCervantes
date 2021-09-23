@@ -15,9 +15,9 @@ public class MapeoLibro implements RowMapper<DtoLibro>, MapperResult {
         String titulo = resultSet.getString("titulo");
         String categoria = resultSet.getString("categoria");
         String distribucion = resultSet.getString("distribucion");
-        int disponible = resultSet.getInt("disponibles");
+        int disponibles = resultSet.getInt("disponibles");
         double precio = resultSet.getDouble("precio");
 
-        return new DtoLibro(id, titulo, categoria, distribucion, disponible, precio);
+        return new DtoLibro(id, titulo, categoria, distribucion, disponibles, precio);
     }
 }
