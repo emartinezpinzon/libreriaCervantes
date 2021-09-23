@@ -1,13 +1,17 @@
 package com.ceiba.compra.modelo.dto;
 
-import com.ceiba.libro.modelo.entidad.Libro;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
-import java.util.List;
+import java.time.LocalDate;
 
 @Getter
 @AllArgsConstructor
 public class DtoCompra {
-    private List<Libro> libros;
+    private Long id;
+    private Long libroId;
+    private int cantidad;
+    private LocalDate fechaCompra;
+    private LocalDate fechaEntrega;
+
 }
