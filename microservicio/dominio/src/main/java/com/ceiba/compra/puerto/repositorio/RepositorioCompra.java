@@ -7,6 +7,7 @@ public interface RepositorioCompra {
      * Permite agregar un libro a la lista de compras
      *
      * @param compra
+     * @return el id generado
      */
     Long crear(Compra compra);
 }
