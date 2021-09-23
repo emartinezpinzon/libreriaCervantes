@@ -16,3 +16,12 @@ create table libro (
 
  primary key (id)
 );
+
+create table compra (
+  id int(11) not null auto_increment,
+  libroId int(11) null,
+  cantidad int(11) null,
+
+  primary key (id),
+  foreign key (libroId) references libro (id)
+);
