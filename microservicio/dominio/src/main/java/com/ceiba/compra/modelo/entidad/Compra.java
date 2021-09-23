@@ -4,7 +4,8 @@ import lombok.Getter;
 
 import java.time.LocalDate;
 
-import static com.ceiba.dominio.ValidadorArgumento.validarObligatorio;
+import static com.ceiba.dominio.ValidadorArgumento.*;
+
 
 @Getter
 public class Compra {
@@ -18,7 +19,8 @@ public class Compra {
     private LocalDate fechaEntrega;
 
     public Compra(Long id, Long libroId, int cantidad, LocalDate fechaCompra, LocalDate fechaEntrega) {
-        validarObligatorio(libroId.toString(), DEBE_INGRESAR_LIBRO_ID);
+        validarObligatorio(libroId, DEBE_INGRESAR_LIBRO_ID);
+        validarPositivo((double) cantidad, DEBE_SER_POSITIVO);
 
         this.id = id;
         this.libroId = libroId;
