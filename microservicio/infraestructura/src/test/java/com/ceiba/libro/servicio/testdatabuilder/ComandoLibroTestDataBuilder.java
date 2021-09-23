@@ -15,8 +15,8 @@ public class ComandoLibroTestDataBuilder {
 
     public ComandoLibroTestDataBuilder() {
         titulo = UUID.randomUUID().toString();
-        categoria = "Literatura";
-        distribucion = "Internacional";
+        categoria = UUID.randomUUID().toString();
+        distribucion = UUID.randomUUID().toString();
         disponibles = 3;
         precio = 45000;
     }
