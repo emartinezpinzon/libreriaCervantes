@@ -1,12 +1,12 @@
 package com.ceiba.compra.puerto.repositorio;
 
-import com.ceiba.libro.modelo.entidad.Libro;
+import com.ceiba.compra.modelo.entidad.Compra;
 
 public interface RepositorioCompra {
     /**
      * Permite agregar un libro a la lista de compras
      *
-     * @param libro
+     * @param compra
      */
-    void agregar(Libro libro);
+    Long crear(Compra compra);
 }
