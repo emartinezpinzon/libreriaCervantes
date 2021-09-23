@@ -15,17 +15,13 @@ public class Compra {
     private Long id;
     private Long libroId;
     private int cantidad;
-    private LocalDate fechaCompra;
-    private LocalDate fechaEntrega;
 
-    public Compra(Long id, Long libroId, int cantidad, LocalDate fechaCompra, LocalDate fechaEntrega) {
+    public Compra(Long id, Long libroId, int cantidad) {
         validarObligatorio(libroId, DEBE_INGRESAR_LIBRO_ID);
         validarPositivo((double) cantidad, DEBE_SER_POSITIVO);
 
         this.id = id;
         this.libroId = libroId;
         this.cantidad = cantidad;
-        this.fechaCompra = fechaCompra;
-        this.fechaEntrega = fechaEntrega;
     }
 }
