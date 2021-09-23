@@ -10,4 +10,11 @@ public interface RepositorioCompra {
      * @return el id generado
      */
     Long crear(Compra compra);
+
+    /**
+     * Permite actualizar una lista de compras
+     *
+     * @param compra
+     */
+    void actualizar(Compra compra);
 }
