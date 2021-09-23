@@ -1,1 +1,1 @@
-select count(1) from libro where titulo = :titulo
+select count(1) from libro where id = :id
