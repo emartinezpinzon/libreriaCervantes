@@ -1,4 +1,4 @@
 package com.ceiba.compra.comando.manejador;
 
-public class ManejadorActualizarCompra {
+public class ManejadorCrearCompra {
 }
