@@ -25,23 +25,24 @@ public class ServicioCalcularPrecioFinalFactura {
      */
     public Double ejecutar() {
         List<DtoCompra> compras = daoCompra.listar();
-
-        return calcularPrecioFinal(compras);
-    }
-
-    public Double calcularPrecioFinal(List<DtoCompra> compras) {
-        Double descuento = 0D;
-        List<DtoCompra> comprasNoEducacion = new ArrayList<>();
-        Double precioCompra = sumatoriaCompra(compras);
+        List<DtoCompra> comprasEducacion = new ArrayList<>();
+        List<DtoCompra> comprasOtros = new ArrayList<>();
 
         for (DtoCompra compra: compras)
             if (compra.getCategoria().equals(CATEGORIA_LIBRO_EDUCACION))
-                descuento += calcularDescuentosEducacion(compra);
+                comprasEducacion.add(compra);
             else
-                comprasNoEducacion.add(compra);
+                comprasOtros.add(compra);
 
-        List<Double> precios = obtenerListadoPreciosDescendenteNoEducacion(comprasNoEducacion);
-        descuento += sumatoriaDescuentoSegundoLibro(precios);
+        return calcularPrecioFinal(comprasEducacion, comprasOtros);
+    }
+
+    public Double calcularPrecioFinal(List<DtoCompra> educacion, List<DtoCompra> otros) {
+        Double descuento = 0D;
+        Double precioCompra = sumatoriaCompra(educacion) + sumatoriaCompra(otros);
+
+        descuento += sumatoriaDescuentosEducacion(educacion);
+        descuento += sumatoriaDescuentoSegundoLibro(otros);
 
         return precioCompra - descuento;
     }
@@ -64,41 +65,30 @@ public class ServicioCalcularPrecioFinalFactura {
     /**
      * Calcula el descuento de educación
      *
-     * @param compra
+     * @param compras
      * @return un doble
      */
-    private Double calcularDescuentosEducacion(DtoCompra compra) {
-        return compra.getPrecio() * DESCUENTO_LIBRO_EDUCACION;
-    }
-
-    /**
-     * Obtiene el listado de precios de libros no educación de forma descendente
-     *
-     * @param compras
-     * @return una lista ordenada de precios
-     */
-    private List<Double> obtenerListadoPreciosDescendenteNoEducacion(List<DtoCompra> compras) {
-        List<Double> precios = new ArrayList<>();
+    private Double sumatoriaDescuentosEducacion(List<DtoCompra> compras) {
+        Double sum = 0D;
 
         for (DtoCompra compra: compras)
-            for (int i=0; i<compra.getCantidad(); i++)
-                precios.add(compra.getPrecio());
+            sum += compra.getPrecio() * DESCUENTO_LIBRO_EDUCACION;
 
-        return precios;
+        return sum;
     }
 
     /**
      * Calcula la sumatoria del descuento del segundo libro de categorías diferentes a la educación
      *
-     * @param precios
+     * @param compras
      * @return un doble con la sumatoria del descuento de segundo libro
      */
-    private Double sumatoriaDescuentoSegundoLibro(List<Double> precios) {
+    private Double sumatoriaDescuentoSegundoLibro(List<DtoCompra> compras) {
         Double sum = 0D;
 
-        for (int i=0; i<precios.size(); i++)
-            if (i % 2 == 0)
-                sum += precios.get(i) * DESCUENTO_SEGUNDO_LIBRO;
+        for (int i=0; i<compras.size(); i++)
+            if (i % 2 != 0)
+                sum += compras.get(i).getPrecio() * DESCUENTO_SEGUNDO_LIBRO;
 
         return sum;
     }
