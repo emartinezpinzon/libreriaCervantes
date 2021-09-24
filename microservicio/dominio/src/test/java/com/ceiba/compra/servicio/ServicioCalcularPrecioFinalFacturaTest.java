@@ -1,12 +1,10 @@
 package com.ceiba.compra.servicio;
 
 import com.ceiba.compra.modelo.dto.DtoCompra;
-import com.ceiba.compra.puerto.dao.DaoCompra;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
@@ -79,6 +77,38 @@ public class ServicioCalcularPrecioFinalFacturaTest {
     }
 
 
+    /**
+     * Calcula el descuento de varios libros de varias categorías
+     *
+     * A la categoría educación le aplica un descuento del 20%
+     * Al segundo libro de otras categorías le aplica un descuento del 50%
+     */
+    @Test
+    public void calcularDescuentosVariosTest() {
+        // Arrange
+        List<DtoCompra> educacion = new ArrayList<>();
+        List<DtoCompra> otros = new ArrayList<>();
+        DtoCompra libroJava = Mockito.mock(DtoCompra.class);
+        DtoCompra ficciones = Mockito.mock(DtoCompra.class);
+        DtoCompra claraboya = Mockito.mock(DtoCompra.class);
+
+        // Act
+        Mockito.when(libroJava.getCategoria()).thenReturn("Educación");
+        Mockito.when(libroJava.getPrecio()).thenReturn(100D);
+        educacion.add(libroJava);
+
+        Mockito.when(claraboya.getCategoria()).thenReturn("Literatura");
+        Mockito.when(claraboya.getPrecio()).thenReturn(40D);
+        otros.add(claraboya);
+
+        Mockito.when(ficciones.getCategoria()).thenReturn("Literatura");
+        Mockito.when(ficciones.getPrecio()).thenReturn(20D);
+        otros.add(ficciones);
+
+        // Assert
+        Double precioFinal = servicioCalcularPrecioFinalFactura.calcularPrecioFinal(educacion, otros);
+        Assert.assertEquals(130D, precioFinal, 1.0);
+    }
 
 
 }
