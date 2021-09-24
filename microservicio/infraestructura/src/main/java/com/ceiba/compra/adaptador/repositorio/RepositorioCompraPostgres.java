@@ -14,6 +14,9 @@ public class RepositorioCompraPostgres implements RepositorioCompra {
     @SqlStatement(namespace = "compra", value = "crear")
     private static String sqlCrear;
 
+    @SqlStatement(namespace = "compra", value = "actualizar")
+    private static String sqlActualizar;
+
     public RepositorioCompraPostgres(CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate) {
         this.customNamedParameterJdbcTemplate = customNamedParameterJdbcTemplate;
     }
@@ -21,5 +24,10 @@ public class RepositorioCompraPostgres implements RepositorioCompra {
     @Override
     public Long crear(Compra compra) {
         return this.customNamedParameterJdbcTemplate.crear(compra, sqlCrear);
+    }
+
+    @Override
+    public void actualizar(Compra compra) {
+        this.customNamedParameterJdbcTemplate.actualizar(compra, sqlActualizar);
     }
 }
