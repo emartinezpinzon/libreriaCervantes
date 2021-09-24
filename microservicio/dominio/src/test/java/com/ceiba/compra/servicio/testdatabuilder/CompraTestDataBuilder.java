@@ -9,6 +9,7 @@ public class CompraTestDataBuilder {
     private Long id;
     private Long libroId;
     private int cantidad;
+    private LocalDate fechaEntrega;
 
     public CompraTestDataBuilder() {
         libroId = 1L;
@@ -34,6 +35,6 @@ public class CompraTestDataBuilder {
     }
 
     public Compra build() {
-        return new Compra(id, libroId, cantidad);
+        return new Compra(id, libroId, cantidad, fechaEntrega);
     }
 }
