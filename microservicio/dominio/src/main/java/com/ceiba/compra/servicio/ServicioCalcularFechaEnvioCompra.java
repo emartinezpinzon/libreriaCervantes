@@ -21,7 +21,7 @@ public class ServicioCalcularFechaEnvioCompra {
         LocalDateTime fechaEntrega = LocalDateTime.now();
 
         if (dtoCompra.getCantidad() > dtoCompra.getDisponibles()) {
-            fechaEntrega = calcularFechaEntrega(fechaEntrega);
+            fechaEntrega = calcularFechaEntrega(dtoCompra, fechaEntrega);
         }
 
         return fechaEntrega;
@@ -33,7 +33,7 @@ public class ServicioCalcularFechaEnvioCompra {
      * @param fechaEntrega
      * @return un LocalDateTime
      */
-    public LocalDateTime calcularFechaEntrega(LocalDateTime fechaEntrega) {
+    public LocalDateTime calcularFechaEntrega(DtoCompra dtoCompra, LocalDateTime fechaEntrega) {
         if (dtoCompra.getDistribucion().equals(DISTRIBUCION_NACIONAL))
             return validarDiaVigente(fechaEntrega, ESPERA_ENVIO_NACIONAL);
 
