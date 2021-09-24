@@ -37,6 +37,13 @@ public class ServicioCalcularPrecioFinalFactura {
         return calcularPrecioFinal(comprasEducacion, comprasOtros);
     }
 
+    /**
+     * Calcula el precio final de las compras con descuentos
+     *
+     * @param educacion
+     * @param otros
+     * @return un Double
+     */
     public Double calcularPrecioFinal(List<DtoCompra> educacion, List<DtoCompra> otros) {
         Double descuento = 0D;
         Double precioCompra = sumatoriaCompra(educacion) + sumatoriaCompra(otros);
