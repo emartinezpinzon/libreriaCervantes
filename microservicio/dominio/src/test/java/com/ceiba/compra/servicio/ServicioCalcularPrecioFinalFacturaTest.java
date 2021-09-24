@@ -76,6 +76,38 @@ public class ServicioCalcularPrecioFinalFacturaTest {
         Assert.assertEquals(63D, precioFinal, 1.0);
     }
 
+    /**
+     * Se calcula el descuento de una compra con varios libros no educativos
+     *
+     * El segundo libro recibe un descuento del 50%
+     */
+    @Test
+    public void calcularDescuentosVariosNoEducacionTest() {
+        // Arrange
+        List<DtoCompra> educacion = new ArrayList<>();
+        List<DtoCompra> otros = new ArrayList<>();
+        DtoCompra divinaComedia = Mockito.mock(DtoCompra.class);
+        DtoCompra ficciones = Mockito.mock(DtoCompra.class);
+        DtoCompra marianela = Mockito.mock(DtoCompra.class);
+
+        // Act
+        Mockito.when(divinaComedia.getCategoria()).thenReturn("Literatura");
+        Mockito.when(divinaComedia.getPrecio()).thenReturn(100D);
+        otros.add(divinaComedia);
+
+        Mockito.when(ficciones.getCategoria()).thenReturn("Literatura");
+        Mockito.when(ficciones.getPrecio()).thenReturn(80D);
+        otros.add(ficciones);
+
+        Mockito.when(marianela.getCategoria()).thenReturn("Literatura");
+        Mockito.when(marianela.getPrecio()).thenReturn(60D);
+        otros.add(marianela);
+
+        // Assert
+        Double precioFinal = servicioCalcularPrecioFinalFactura.calcularPrecioFinal(educacion, otros);
+        Assert.assertEquals(200D, precioFinal, 1.0);
+    }
+
 
     /**
      * Calcula el descuento de varios libros de varias categorías
