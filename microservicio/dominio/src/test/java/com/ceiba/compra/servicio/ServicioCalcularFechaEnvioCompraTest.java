@@ -17,6 +17,11 @@ public class ServicioCalcularFechaEnvioCompraTest {
     @InjectMocks
     private ServicioCalcularFechaEnvioCompra servicioCalcularFechaEnvioCompra;
 
+    /**
+     * Calcula el tiempo de espera para un envío internacional haciendo el pedido luego de las 9 AM
+     *
+     * Para el envío internacional son 5 días hábiles, excluído hoy
+     */
     @Test
     public void calcularFechaEnvioInternacionalTest() {
         // Arrange
@@ -35,6 +40,11 @@ public class ServicioCalcularFechaEnvioCompraTest {
         Assert.assertEquals(fechaEntrega, fechaEntregaEsperada);
     }
 
+    /**
+     * Calcula el tiempo de espera para un envío internacional haciendo el pedido antes de las 9 AM
+     *
+     * Para el envío internacional son 5 días hábiles, incluído hoy
+     */
     @Test
     public void calcularFechaEnvioInternacionalIncluidoHoyTest() {
         // Arrange
