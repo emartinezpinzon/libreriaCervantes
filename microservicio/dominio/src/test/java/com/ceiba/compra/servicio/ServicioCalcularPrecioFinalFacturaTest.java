@@ -32,25 +32,53 @@ public class ServicioCalcularPrecioFinalFacturaTest {
     @Test
     public void calcularDescuentosEducacionTest() {
         // Arrange
-        List<DtoCompra> compras = new ArrayList<>();
+        List<DtoCompra> educacion = new ArrayList<>();
+        List<DtoCompra> otros = new ArrayList<>();
         DtoCompra libroJava = Mockito.mock(DtoCompra.class);
         DtoCompra ficciones = Mockito.mock(DtoCompra.class);
-        DaoCompra daoCompra = Mockito.mock(DaoCompra.class);
 
         // Act
         Mockito.when(libroJava.getCategoria()).thenReturn("Educación");
         Mockito.when(libroJava.getPrecio()).thenReturn(100D);
-        compras.add(libroJava);
+        educacion.add(libroJava);
 
         Mockito.when(ficciones.getCategoria()).thenReturn("Literatura");
         Mockito.when(ficciones.getPrecio()).thenReturn(20D);
-        compras.add(ficciones);
-
-        Mockito.when(daoCompra.listar()).thenReturn(compras);
+        otros.add(ficciones);
 
         // Assert
-        Double precioFinal = servicioCalcularPrecioFinalFactura.calcularPrecioFinal(compras);
+        Double precioFinal = servicioCalcularPrecioFinalFactura.calcularPrecioFinal(educacion, otros);
         Assert.assertEquals(100D, precioFinal, 1.0);
     }
+
+    /**
+     * Se calcula el descuento de una compra con 2 libros no educativos
+     *
+     * El segundo libro recibe un descuento del 50%
+     */
+    @Test
+    public void calcularDescuentosNoEducacionTest() {
+        // Arrange
+        List<DtoCompra> educacion = new ArrayList<>();
+        List<DtoCompra> otros = new ArrayList<>();
+        DtoCompra divinaComedia = Mockito.mock(DtoCompra.class);
+        DtoCompra ficciones = Mockito.mock(DtoCompra.class);
+
+        // Act
+        Mockito.when(divinaComedia.getCategoria()).thenReturn("Literatura");
+        Mockito.when(divinaComedia.getPrecio()).thenReturn(45D);
+        otros.add(divinaComedia);
+
+        Mockito.when(ficciones.getCategoria()).thenReturn("Literatura");
+        Mockito.when(ficciones.getPrecio()).thenReturn(36D);
+        otros.add(ficciones);
+
+        // Assert
+        Double precioFinal = servicioCalcularPrecioFinalFactura.calcularPrecioFinal(educacion, otros);
+        Assert.assertEquals(63D, precioFinal, 1.0);
+    }
+
+
+
 
 }
