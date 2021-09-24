@@ -24,8 +24,13 @@ public class ServicioCalcularPrecioFinalFactura {
      * @return el precio final
      */
     public Double ejecutar() {
-        Double descuento = 0D;
         List<DtoCompra> compras = daoCompra.listar();
+
+        return calcularPrecioFinal(compras);
+    }
+
+    public Double calcularPrecioFinal(List<DtoCompra> compras) {
+        Double descuento = 0D;
         List<DtoCompra> comprasNoEducacion = new ArrayList<>();
         Double precioCompra = sumatoriaCompra(compras);
 
