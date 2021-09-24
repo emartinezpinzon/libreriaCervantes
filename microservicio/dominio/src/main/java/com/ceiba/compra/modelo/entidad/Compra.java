@@ -16,7 +16,7 @@ public class Compra {
     private int cantidad;
     private LocalDate fechaEntrega;
 
-    public Compra(Long id, Long libroId, int cantidad) {
+    public Compra(Long id, Long libroId, int cantidad, LocalDate fechaEntrega) {
         validarObligatorio(libroId, DEBE_INGRESAR_LIBRO_ID);
         validarPositivo((double) cantidad, DEBE_SER_POSITIVO);
 
