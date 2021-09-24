@@ -20,6 +20,52 @@ public class ServicioCalcularFechaEnvioCompraTest {
     /**
      * Calcula el tiempo de espera para un envío internacional haciendo el pedido luego de las 9 AM
      *
+     * Para el envío internacional son 3 días hábiles, excluído hoy
+     */
+    @Test
+    public void calcularFechaEnvioNacionalTest() {
+        // Arrange
+        String fecha = "2021-09-24 11:30";
+        String fechaEsperada = "2021-09-29 11:30";
+        DtoCompra compra = Mockito.mock(DtoCompra.class);
+
+        // Act
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(fecha, formatter);
+        LocalDateTime fechaEntregaEsperada = LocalDateTime.parse(fechaEsperada, formatter);
+        Mockito.when(compra.getDistribucion()).thenReturn("Nacional");
+
+        // Assert
+        LocalDateTime fechaEntrega = servicioCalcularFechaEnvioCompra.calcularFechaEntrega(compra, dateTime);
+        Assert.assertEquals(fechaEntrega, fechaEntregaEsperada);
+    }
+
+    /**
+     * Calcula el tiempo de espera para un envío internacional haciendo el pedido antes de las 9 AM
+     *
+     * Para el envío internacional son 5 días hábiles, incluído hoy
+     */
+    @Test
+    public void calcularFechaEnvioNacionalIncluidoHoyTest() {
+        // Arrange
+        String fecha = "2021-09-24 07:30";
+        String fechaEsperada = "2021-09-28 07:30";
+        DtoCompra compra = Mockito.mock(DtoCompra.class);
+
+        // Act
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(fecha, formatter);
+        LocalDateTime fechaEntregaEsperada = LocalDateTime.parse(fechaEsperada, formatter);
+        Mockito.when(compra.getDistribucion()).thenReturn("Nacional");
+
+        // Assert
+        LocalDateTime fechaEntrega = servicioCalcularFechaEnvioCompra.calcularFechaEntrega(compra, dateTime);
+        Assert.assertEquals(fechaEntrega, fechaEntregaEsperada);
+    }
+
+    /**
+     * Calcula el tiempo de espera para un envío internacional haciendo el pedido luego de las 9 AM
+     *
      * Para el envío internacional son 5 días hábiles, excluído hoy
      */
     @Test
