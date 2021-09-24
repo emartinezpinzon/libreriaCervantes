@@ -11,7 +11,8 @@ public class FabricaCompra {
         return new Compra(
                 comandoCompra.getLibroId(),
                 comandoCompra.getLibroId(),
-                comandoCompra.getCantidad()
+                comandoCompra.getCantidad(),
+                comandoCompra.getFechaEntrega()
         );
     }
 }
