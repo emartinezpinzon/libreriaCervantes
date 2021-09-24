@@ -6,6 +6,7 @@ import org.springframework.jdbc.core.RowMapper;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDate;
 
 
 public class MapeoCompra implements RowMapper<DtoCompra>, MapperResult {
@@ -15,6 +16,7 @@ public class MapeoCompra implements RowMapper<DtoCompra>, MapperResult {
         Long id = resultSet.getLong("id");
         Long libroId = resultSet.getLong("libroId");
         int cantidad = resultSet.getInt("cantidad");
+        LocalDate fechaEntrega = extraerLocalDate(resultSet, "fechaEntrega");;
 
         String titulo = resultSet.getString("titulo");
         String categoria = resultSet.getString("categoria");
@@ -22,6 +24,6 @@ public class MapeoCompra implements RowMapper<DtoCompra>, MapperResult {
         int disponibles = resultSet.getInt("disponibles");
         double precio = resultSet.getDouble("precio");
 
-        return new DtoCompra(id, libroId, cantidad, titulo, categoria, distribucion, disponibles, precio);
+        return new DtoCompra(id, libroId, cantidad, fechaEntrega, titulo, categoria, distribucion, disponibles, precio);
     }
 }
