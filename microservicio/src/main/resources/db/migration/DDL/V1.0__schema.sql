@@ -21,6 +21,7 @@ create table compra (
   id int(11) not null auto_increment,
   libroId int(11) null,
   cantidad int(11) null,
+  fechaEntrega datetime null,
 
   primary key (id),
   foreign key (libroId) references libro (id)
