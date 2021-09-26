@@ -1,12 +1,14 @@
 package com.ceiba.compra.modelo.entidad;
 
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 import static com.ceiba.dominio.ValidadorArgumento.*;
 
 @Getter
+@Setter
 public class Compra {
     private static final String DEBE_INGRESAR_LIBRO_ID = "Debe ingresar un identificador del libro";
     private static final String DEBE_SER_POSITIVO = "Debe ingresar una cantidad positiva";
