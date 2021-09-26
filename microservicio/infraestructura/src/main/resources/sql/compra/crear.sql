@@ -1,1 +1,1 @@
-insert into compra (libroId, cantidad) values (:libroId, :cantidad)
+insert into compra (libroId, cantidad, fechaEntrega) values (:libroId, :cantidad, :fechaEntrega)
