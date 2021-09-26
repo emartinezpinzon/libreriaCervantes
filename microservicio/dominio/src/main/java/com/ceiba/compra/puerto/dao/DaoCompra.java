@@ -11,4 +11,12 @@ public interface DaoCompra {
      * @return un listado de libros
      */
     List<DtoCompra> listar();
+
+    /**
+     * Permite buscar una compra por Id
+     *
+     * @param id
+     * @return
+     */
+    DtoCompra buscarPorId(Long id);
 }
