@@ -11,4 +11,12 @@ public interface DaoLibro {
      * @return un listado de libros
      */
     List<DtoLibro> listar();
+
+    /**
+     * Permite buscar un libro por su id
+     *
+     * @param id
+     * @return un objeto DtoLibro con la información encontrada
+     */
+    DtoLibro buscarPorId(Long id);
 }
