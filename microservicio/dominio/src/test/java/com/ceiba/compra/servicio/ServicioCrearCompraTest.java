@@ -24,6 +24,17 @@ import java.time.LocalDateTime;
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioCrearCompraTest {
 
+    private static final String LIBRO_NO_REGISTRADO = "El libro no está registrado";
+    private static final String DISTRIBUCION_INTERNACIONAL = "Internacional";
+    private static final String DISTRIBUCION_NACIONAL = "Nacional";
+    private static final int ESPERA_ENVIO_INTERNACIONAL = 5;
+    private static final int ESPERA_ENVIO_NACIONAL = 3;
+    private static final int HORA_CONTAR_DIA = 9;
+    private static final int CONTAR_DIA = 1;
+
+    private LocalDateTime fechaActual = LocalDateTime.now();
+    private LocalDate fechaEntregaEsperada;
+
     @Mock
     private DaoLibro daoLibro;
 
@@ -46,11 +57,11 @@ public class ServicioCrearCompraTest {
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(false);
 
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionLibroNoRegistrado.class, "El libro no está registrado");
+        BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionLibroNoRegistrado.class, LIBRO_NO_REGISTRADO);
     }
 
     @Test
-    public void validarCrearCompraConExistencia() {
+    public void validarCrearCompraConExistenciaTest() {
         // Arrange
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(true);
         Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
@@ -61,6 +72,28 @@ public class ServicioCrearCompraTest {
 
         // Assert
         Assert.assertEquals(LocalDate.now(), compra.getFechaEntrega());
+    }
+
+    @Test
+    public void validarCrearCompraSinExistenciaDistribucionNacionalTest() {
+        // Arrange
+        libro.setDistribucion(DISTRIBUCION_NACIONAL);
+        compra.setCantidad(5);
+
+        Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
+
+        // Act
+        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
+        servicioCrearCompra.ejecutar(compra);
+
+        // Assert
+        if (fechaActual.getHour() < HORA_CONTAR_DIA)
+            fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_NACIONAL - CONTAR_DIA);
+        else
+            fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_NACIONAL);
+
+        Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
     private LocalDate sumarDiasSinFinesDeSemana(LocalDateTime fechaActual, int dias) {

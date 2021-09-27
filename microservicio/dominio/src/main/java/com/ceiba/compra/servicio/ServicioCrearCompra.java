@@ -15,8 +15,8 @@ public class ServicioCrearCompra {
 
     private static final String LIBRO_NO_REGISTRADO = "El libro no está registrado";
     private static final String DISTRIBUCION_NACIONAL = "Nacional";
-    private static final int ESPERA_ENVIO_NACIONAL = 3;
     private static final int ESPERA_ENVIO_INTERNACIONAL = 5;
+    private static final int ESPERA_ENVIO_NACIONAL = 3;
     private static final int HORA_CONTAR_DIA = 9;
     private static final int CONTAR_DIA = 1;
 
