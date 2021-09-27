@@ -2,8 +2,10 @@ package com.ceiba.libro.modelo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class DtoLibro {
     private Long id;
