@@ -8,6 +8,7 @@ import com.ceiba.dominio.excepcion.ExcepcionLibroNoRegistrado;
 import com.ceiba.libro.modelo.dto.DtoLibro;
 import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
+import com.ceiba.libro.servicio.testdatabuilder.DtoLibroTestDataBuilder;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,13 +17,13 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import java.util.UUID;
+import java.time.LocalDate;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioCrearCompraTest {
 
     @Mock
-    private DaoLibro libro;
+    private DaoLibro daoLibro;
 
     @Mock
     private RepositorioCompra repositorioCompra;
@@ -33,13 +34,31 @@ public class ServicioCrearCompraTest {
     @InjectMocks
     Compra compra = new CompraTestDataBuilder().build();
 
+    @InjectMocks
+    DtoLibro libro = new DtoLibroTestDataBuilder().build();
+
     @Test
     public void validarLibroNoExistenciaPreviaRegistrarCompraTest() {
         // Arrange
+        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(false);
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, libro);
 
         // Act - Assert
         BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionLibroNoRegistrado.class, "El libro no está registrado");
+    }
+
+    @Test
+    public void validarCrearCompraConExistencia() {
+        // Arrange
+        Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(true);
+        Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
+
+        // Act
+        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
+        servicioCrearCompra.ejecutar(compra);
+
+        // Assert
+        Assert.assertEquals(LocalDate.now(), compra.getFechaEntrega());
+
     }
 }
