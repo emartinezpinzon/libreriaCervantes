@@ -1,8 +1,11 @@
 package com.ceiba.configuracion;
 
+import com.ceiba.compra.puerto.dao.DaoCompra;
 import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
+import com.ceiba.compra.puerto.repositorio.RepositorioFactura;
 import com.ceiba.compra.servicio.ServicioActualizarCompra;
 import com.ceiba.compra.servicio.ServicioCrearCompra;
+import com.ceiba.compra.servicio.ServicioCrearFactura;
 import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
 import com.ceiba.libro.servicio.ServicioActualizarLibro;
@@ -58,5 +61,13 @@ public class BeanServicio {
     @Bean
     public ServicioActualizarCompra servicioActualizarCompra(RepositorioCompra repositorioCompra) {
         return new ServicioActualizarCompra(repositorioCompra);
+    }
+
+    /**
+     * Beans de factura
+     */
+    @Bean
+    public ServicioCrearFactura servicioCrearFactura(RepositorioFactura repositorioFactura, DaoCompra daoCompra) {
+        return new ServicioCrearFactura(repositorioFactura, daoCompra);
     }
 }

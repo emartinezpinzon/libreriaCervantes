@@ -4,7 +4,9 @@ import com.ceiba.compra.modelo.entidad.Factura;
 import com.ceiba.compra.puerto.repositorio.RepositorioFactura;
 import com.ceiba.infraestructura.jdbc.CustomNamedParameterJdbcTemplate;
 import com.ceiba.infraestructura.jdbc.sqlstatement.SqlStatement;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public class RepositorioFecturaPostgres implements RepositorioFactura {
 
     private final CustomNamedParameterJdbcTemplate customNamedParameterJdbcTemplate;

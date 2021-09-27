@@ -5,10 +5,11 @@ import com.ceiba.compra.comando.ComandoFactura;
 import com.ceiba.compra.comando.fabrica.FabricaFactura;
 import com.ceiba.compra.modelo.entidad.Factura;
 import com.ceiba.compra.servicio.ServicioCrearFactura;
+import com.ceiba.manejador.ManejadorComandoRespuesta;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ManejadorCrearFactura {
+public class ManejadorCrearFactura implements ManejadorComandoRespuesta<ComandoFactura, ComandoRespuesta<Long>> {
 
     private final FabricaFactura fabricaFactura;
     private final ServicioCrearFactura servicioCrearFactura;
