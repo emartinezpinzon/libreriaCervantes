@@ -26,3 +26,11 @@ create table compra (
   primary key (id),
   foreign key (libroId) references libro (id)
 );
+
+create table factura (
+ id int(11) not null auto_increment,
+ fechaCompra datetime null,
+ precioFinal double(10) null,
+
+ primary key (id)
+);
