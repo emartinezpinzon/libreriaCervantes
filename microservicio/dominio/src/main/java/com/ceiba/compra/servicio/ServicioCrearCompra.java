@@ -33,12 +33,6 @@ public class ServicioCrearCompra {
         this.daoLibro = daoLibro;
     }
 
-    /**
-     * Crea una nueva compra
-     *
-     * @param compra
-     * @return el id generado de la compra
-     */
     public Long ejecutar(Compra compra) {
         validarExistenciaLibro(compra.getLibroId());
         DtoLibro libro = daoLibro.buscarPorId(compra.getLibroId());
@@ -48,11 +42,6 @@ public class ServicioCrearCompra {
         return this.repositorioCompra.crear(compra);
     }
 
-    /**
-     * Valida la existencia de un libro
-     *
-     * @param id
-     */
     private void validarExistenciaLibro(Long id) {
         boolean existe = repositorioLibro.existe(id);
 
