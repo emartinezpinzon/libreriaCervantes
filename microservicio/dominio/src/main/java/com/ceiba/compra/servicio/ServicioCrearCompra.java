@@ -40,11 +40,10 @@ public class ServicioCrearCompra {
      * @return el id generado de la compra
      */
     public Long ejecutar(Compra compra) {
+        validarExistenciaLibro(compra.getLibroId());
         DtoLibro libro = daoLibro.buscarPorId(compra.getLibroId());
 
-        validarExistenciaLibro(compra.getLibroId());
         calcularFechaEntrega(compra, libro);
-        System.out.println(compra);
 
         return this.repositorioCompra.crear(compra);
     }
