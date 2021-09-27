@@ -17,7 +17,9 @@ import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioCrearCompraTest {
@@ -59,6 +61,19 @@ public class ServicioCrearCompraTest {
 
         // Assert
         Assert.assertEquals(LocalDate.now(), compra.getFechaEntrega());
+    }
 
+    private LocalDate sumarDiasSinFinesDeSemana(LocalDateTime fechaActual, int dias) {
+        int diasAgregados = 0;
+
+        while (diasAgregados < dias) {
+            fechaActual = fechaActual.plusDays(1);
+
+            if (!(fechaActual.getDayOfWeek() == DayOfWeek.SATURDAY ||
+                    fechaActual.getDayOfWeek() == DayOfWeek.SUNDAY))
+                ++diasAgregados;
+        }
+
+        return fechaActual.toLocalDate();
     }
 }
