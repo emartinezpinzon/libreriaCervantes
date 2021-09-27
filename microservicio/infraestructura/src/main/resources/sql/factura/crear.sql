@@ -1,0 +1,1 @@
+insert into factura (precioFinal, fechaCompra) values (:precioFinal, :fechaCompra)
