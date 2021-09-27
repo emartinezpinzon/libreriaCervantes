@@ -25,6 +25,6 @@ public class Compra {
         this.id = id;
         this.libroId = libroId;
         this.cantidad = cantidad;
-        this.fechaEntrega = null;
+        this.fechaEntrega = fechaEntrega;
     }
 }
