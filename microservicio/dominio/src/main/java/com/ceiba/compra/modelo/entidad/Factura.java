@@ -11,9 +11,9 @@ public class Factura {
     private double precioFinal;
     private LocalDate fechaCompra;
 
-    public Factura(Long id, double precioFinal) {
+    public Factura(Long id, double precioFinal, LocalDate fechaCompra) {
         this.id = id;
         this.precioFinal = precioFinal;
-        this.fechaCompra = LocalDate.now();
+        this.fechaCompra = fechaCompra;
     }
 }
