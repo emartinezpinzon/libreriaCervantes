@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/factura")
-@Api(tags = {"Consultar la información de factura"})
+@Api(tags = {"Consultar información de las factura"})
 public class ConsultaControladorFactura {
 
     private final ManejadorListaFactura manejadorListaFactura;

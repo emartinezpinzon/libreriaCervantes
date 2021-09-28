@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/libros")
-@Api(tags = {"Controlador consulta libros"})
+@Api(tags = {"Consultar información de los libros"})
 public class ConsultaControladorLibro {
 
     private final ManejadorListarLibros manejadorListarLibros;
@@ -22,7 +22,7 @@ public class ConsultaControladorLibro {
     }
 
     @GetMapping
-    @ApiOperation("Listar libros")
+    @ApiOperation("Listar los libros registrados")
     public List<DtoLibro> listar() {
         return this.manejadorListarLibros.ejecutar();
     }

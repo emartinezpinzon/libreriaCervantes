@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/libros")
-@Api(tags = {"Controlador comando libro"})
+@Api(tags = {"Modificar la información disponible de libros"})
 public class ComandoControladorLibro {
 
     private final ManejadorCrearLibro manejadorCrearLibro;
@@ -25,13 +25,13 @@ public class ComandoControladorLibro {
     }
 
     @PostMapping
-    @ApiOperation("Crear libro")
+    @ApiOperation("Registrar un nuevo libro")
     public ComandoRespuesta<Long> crear(@RequestBody ComandoLibro comandoLibro) {
         return manejadorCrearLibro.ejecutar(comandoLibro);
     }
 
     @PutMapping(value = "/{id}")
-    @ApiOperation("Actualizar libro")
+    @ApiOperation("Actualizar un libro existente")
     public void actualizar(@RequestBody ComandoLibro comandoLibro, @PathVariable Long id) {
         comandoLibro.setId(id);
 

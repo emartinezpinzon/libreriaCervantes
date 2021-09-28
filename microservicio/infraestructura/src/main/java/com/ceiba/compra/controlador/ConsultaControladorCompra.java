@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/compra")
-@Api(tags = {"Controlador consulta compra"})
+@Api(tags = {"Consultar información de las compras"})
 public class ConsultaControladorCompra {
 
     private final ManejadorListaCompra manejadorListaCompra;
@@ -22,7 +22,7 @@ public class ConsultaControladorCompra {
     }
 
     @GetMapping
-    @ApiOperation("Listar compras")
+    @ApiOperation("Lista todas las compras registradas")
     public List<DtoCompra> listar() {
         return this.manejadorListaCompra.ejecutar();
     }

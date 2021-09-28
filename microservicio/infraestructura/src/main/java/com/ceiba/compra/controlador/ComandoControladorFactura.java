@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/factura")
-@Api(tags = {"Controlador comando factura"})
+@Api(tags = {"Modificar la información disponible de facturas"})
 public class ComandoControladorFactura {
 
     private final ManejadorCrearFactura manejadorCrearFactura;
@@ -24,7 +24,7 @@ public class ComandoControladorFactura {
     }
 
     @PostMapping
-    @ApiOperation("Crear factura")
+    @ApiOperation("Crear una nueva factura")
     public ComandoRespuesta<Long> crear(@RequestBody ComandoFactura comandoFactura) {
         return manejadorCrearFactura.ejecutar(comandoFactura);
     }
