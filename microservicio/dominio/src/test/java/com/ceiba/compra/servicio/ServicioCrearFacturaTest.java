@@ -55,6 +55,20 @@ public class ServicioCrearFacturaTest {
     }
 
     @Test
+    public void calcularCompraSinDescuentoTest() {
+        // Arrange
+        compra1.setCategoria("Autoayuda");
+        compras.add(compra1);
+        Mockito.when(daoCompra.listar()).thenReturn(compras);
+
+        // Act
+        servicioCrearFactura.ejecutar(factura);
+
+        // Assert
+        Assert.assertEquals(100000D, factura.getPrecioFinal(), 0.1);
+    }
+
+    @Test
     public void calcularDescuentosEducacionTest() {
         // Arrange
         compra1.setCategoria("Educación");
