@@ -117,30 +117,6 @@ public class ServicioCrearCompraTest {
         Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
-    @Test
-    public void validarCrearCompraSinExistenciaDistribucionInternacionalSinContarDiaTest() {
-        // Arrange
-        libro.setDistribucion(DISTRIBUCION_INTERNACIONAL);
-        compra.setCantidad(5);
-
-        Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(true);
-        Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
-
-        // Act
-        if (fechaActual.getHour() < HORA_CONTAR_DIA)
-            fechaActual = fechaActual.plusHours(10L);
-
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
-        servicioCrearCompra.ejecutar(compra);
-
-        //REVISAR LUEGO DE LAS 9 AM============================================================================
-        // Assert
-
-        fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_INTERNACIONAL);
-
-        Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
-    }
-
     private LocalDate sumarDiasSinFinesDeSemana(LocalDateTime fechaActual, int dias) {
         int diasAgregados = 0;
 

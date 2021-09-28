@@ -28,6 +28,7 @@ public class ServicioActualizarLibroTest {
         BasePrueba.assertThrows(() -> servicioActualizarLibro.ejecutar(libro), ExcepcionDuplicidad.class, LIBRO_YA_EXISTE);
     }
 
+    // Unit Test para actualizar
     @Test
     public void validarLibroNoExistenciaPreviaTest() {
         // Arrange
