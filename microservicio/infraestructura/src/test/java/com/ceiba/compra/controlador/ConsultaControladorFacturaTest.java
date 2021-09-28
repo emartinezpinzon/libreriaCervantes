@@ -41,13 +41,26 @@ public class ConsultaControladorFacturaTest {
     @Test
     public void mostrarFactura() throws Exception {
         // Arrange
+        Long id = 1L;
 
         // Act - Assert
-        mockMvc.perform(get("/factura/1")
+        mockMvc.perform(get("/factura/{id}", id)
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 //.andExpect(jsonPath("$", hasSize(2)))
                 .andExpect(jsonPath("$.id", IsNull.notNullValue()))
                 .andExpect(jsonPath("$.precioFinal", is(50000D)));
+    }
+
+    @Test
+    public void mostrarFacturaInexistente() throws Exception {
+        // Arrange
+        Long id = 100L;
+
+        // Act - Assert
+        mockMvc.perform(get("/factura/{id}", id)
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().is5xxServerError());
     }
 }
