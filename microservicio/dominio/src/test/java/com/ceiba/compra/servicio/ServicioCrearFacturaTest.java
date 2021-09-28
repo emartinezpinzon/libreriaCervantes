@@ -5,8 +5,10 @@ import com.ceiba.compra.modelo.dto.DtoCompra;
 import com.ceiba.compra.modelo.entidad.Factura;
 import com.ceiba.compra.puerto.dao.DaoCompra;
 import com.ceiba.compra.puerto.repositorio.RepositorioFactura;
+import com.ceiba.compra.servicio.testdatabuilder.DtoCompraTestDataBuilder;
 import com.ceiba.compra.servicio.testdatabuilder.FacturaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
@@ -29,18 +31,40 @@ public class ServicioCrearFacturaTest {
     private RepositorioFactura repositorioFactura;
 
     @InjectMocks
+    private ServicioCrearFactura servicioCrearFactura;
+
+    @InjectMocks
     Factura factura = new FacturaTestDataBuilder().build();
 
     @InjectMocks
     List<DtoCompra> compras = new ArrayList<>();
 
+    @InjectMocks
+    DtoCompra compra1 = new DtoCompraTestDataBuilder().build();
+
+    @InjectMocks
+    DtoCompra compra2 = new DtoCompraTestDataBuilder().build();
+
     @Test
     public void validarCrearFacturaSinComprasRegistradasTest() {
         // Arrange
-        ServicioCrearFactura servicioCrearFactura = new ServicioCrearFactura(repositorioFactura, daoCompra);
         Mockito.when(daoCompra.listar()).thenReturn(compras);
 
         // Act - Assert
         BasePrueba.assertThrows(() -> servicioCrearFactura.ejecutar(factura), ExcepcionSinDatos.class, COMPRAS_NO_REGISTRADAS);
+    }
+
+    @Test
+    public void calcularDescuentosEducacionTest() {
+        // Arrange
+        compra1.setCategoria("Educación");
+        compras.add(compra1);
+        Mockito.when(daoCompra.listar()).thenReturn(compras);
+
+        // Act
+        servicioCrearFactura.ejecutar(factura);
+
+        // Assert
+        Assert.assertEquals(80000D, factura.getPrecioFinal(), 0.1);
     }
 }
