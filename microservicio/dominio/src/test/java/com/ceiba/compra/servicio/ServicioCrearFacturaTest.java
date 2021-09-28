@@ -81,4 +81,22 @@ public class ServicioCrearFacturaTest {
         // Assert
         Assert.assertEquals(80000D, factura.getPrecioFinal(), 0.1);
     }
+
+    @Test
+    public void calcularDescuentosNoEducacionTest() {
+        // Arrange
+        compra1.setCategoria("Literatura");
+        compras.add(compra1);
+
+        compra2.setCategoria("Literatura");
+        compras.add(compra2);
+
+        Mockito.when(daoCompra.listar()).thenReturn(compras);
+
+        // Act
+        servicioCrearFactura.ejecutar(factura);
+
+        // Assert
+        Assert.assertEquals(150000D, factura.getPrecioFinal(), 0.1);
+    }
 }
