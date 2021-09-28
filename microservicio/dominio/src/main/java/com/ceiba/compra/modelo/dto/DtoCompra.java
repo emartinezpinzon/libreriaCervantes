@@ -2,10 +2,12 @@ package com.ceiba.compra.modelo.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Getter
+@Setter
 @AllArgsConstructor
 public class DtoCompra {
     private Long id;
