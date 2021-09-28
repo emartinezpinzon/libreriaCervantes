@@ -1,0 +1,1 @@
+select id, precioFinal, fechaCompra from factura where id = :id

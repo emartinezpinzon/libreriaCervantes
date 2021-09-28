@@ -11,4 +11,12 @@ public interface DaoFactura {
      * @return una lista de facturas
      */
     List<DtoFactura> listar();
+
+    /**
+     * Permite buscar una factura por su ID
+     *
+     * @param id
+     * @return un objeto de factura
+     */
+    DtoFactura buscarPorId(Long id);
 }
