@@ -59,7 +59,7 @@ public class ServicioCrearCompra {
     }
 
     private boolean debeRealizarPedido(Compra compra, DtoLibro libro) {
-        return (compra.getCantidad() > libro.getDisponibles())?true:false;
+        return compra.getCantidad() > libro.getDisponibles();
     }
 
     private LocalDate validarTipoDistribucion(LocalDateTime fechaEntrega, DtoLibro libro) {
