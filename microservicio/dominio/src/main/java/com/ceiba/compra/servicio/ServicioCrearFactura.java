@@ -53,7 +53,7 @@ public class ServicioCrearFactura {
                 comprasOtros.add(compra);
     }
 
-    public Double calcularPrecioFinal() {
+    private Double calcularPrecioFinal() {
         Double descuento = 0D;
         Double precioCompra = sumatoriaCompra(comprasEducacion) + sumatoriaCompra(comprasOtros);
 
