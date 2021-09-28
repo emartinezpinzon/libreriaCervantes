@@ -6,9 +6,12 @@ import com.ceiba.libro.modelo.entidad.Libro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
 import com.ceiba.libro.servicio.testdatabuilder.LibroTestDataBuilder;
 import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
 import org.mockito.Mockito;
 
 public class ServicioCrearLibroTest {
+
+    private static final String LIBRO_YA_EXISTE = "El libro ya existe en el sistema";
 
     @Test
     public void validarLibroExistenciaPreviaTest() {
@@ -19,6 +22,20 @@ public class ServicioCrearLibroTest {
         ServicioCrearLibro servicioCrearLibro = new ServicioCrearLibro(repositorioLibro);
 
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearLibro.ejecutar(libro), ExcepcionDuplicidad.class, "El libro ya existe en el sistema");
+        BasePrueba.assertThrows(() -> servicioCrearLibro.ejecutar(libro), ExcepcionDuplicidad.class, LIBRO_YA_EXISTE);
     }
+
+    @Test
+    public void validarLibroNoExistenciaPreviaTest() {
+        // Arrange
+        Libro libro = new LibroTestDataBuilder().build();
+        RepositorioLibro repositorioLibro = Mockito.mock(RepositorioLibro.class);
+        Mockito.when(repositorioLibro.existe(Mockito.anyString())).thenReturn(false);
+        ServicioCrearLibro servicioCrearLibro = new ServicioCrearLibro(repositorioLibro);
+
+        // Act - Assert
+        Assertions.assertDoesNotThrow(() -> servicioCrearLibro.ejecutar(libro));
+        Mockito.verify(repositorioLibro, Mockito.times(1)).crear(libro);
+    }
+
 }
