@@ -45,15 +45,17 @@ public class ServicioCrearCompraTest {
     private RepositorioLibro repositorioLibro;
 
     @InjectMocks
-    Compra compra = new CompraTestDataBuilder().build();
+    private ServicioCrearCompra servicioCrearCompra;
 
     @InjectMocks
-    DtoLibro libro = new DtoLibroTestDataBuilder().build();
+    private Compra compra = new CompraTestDataBuilder().build();
+
+    @InjectMocks
+    private DtoLibro libro = new DtoLibroTestDataBuilder().build();
 
     @Test
     public void validarLibroNoExistenciaPreviaRegistrarCompraTest() {
         // Arrange
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(false);
 
         // Act - Assert
@@ -67,7 +69,6 @@ public class ServicioCrearCompraTest {
         Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
 
         // Act
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
         servicioCrearCompra.ejecutar(compra);
 
         // Assert
@@ -84,15 +85,14 @@ public class ServicioCrearCompraTest {
         Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
 
         // Act
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
         servicioCrearCompra.ejecutar(compra);
 
-        // Assert
         if (fechaActual.getHour() < HORA_CONTAR_DIA)
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_NACIONAL - CONTAR_DIA);
         else
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_NACIONAL);
 
+        // Assert
         Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
@@ -106,15 +106,14 @@ public class ServicioCrearCompraTest {
         Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
 
         // Act
-        ServicioCrearCompra servicioCrearCompra = new ServicioCrearCompra(repositorioCompra, repositorioLibro, daoLibro);
         servicioCrearCompra.ejecutar(compra);
 
-        // Assert
         if (fechaActual.getHour() < HORA_CONTAR_DIA)
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_INTERNACIONAL - CONTAR_DIA);
         else
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_INTERNACIONAL);
 
+        // Assert
         Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
