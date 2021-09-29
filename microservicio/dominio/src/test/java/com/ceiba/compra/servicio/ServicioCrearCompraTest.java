@@ -24,7 +24,7 @@ import java.time.LocalDateTime;
 @RunWith(MockitoJUnitRunner.class)
 public class ServicioCrearCompraTest {
 
-    private static final String LIBRO_NO_REGISTRADO = "El libro no está registrado";
+    private static final String LIBRO_NO_REGISTRADO = "No hay registros del libro";
     private static final String DISTRIBUCION_INTERNACIONAL = "Internacional";
     private static final String DISTRIBUCION_NACIONAL = "Nacional";
     private static final int ESPERA_ENVIO_INTERNACIONAL = 5;

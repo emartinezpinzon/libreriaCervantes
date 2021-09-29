@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 
 public class ServicioCrearCompra {
 
-    private static final String LIBRO_NO_REGISTRADO = "El libro no está registrado";
+    private static final String LIBRO_NO_REGISTRADO = "No hay registros del libro";
     private static final String DISTRIBUCION_NACIONAL = "Nacional";
     private static final int ESPERA_ENVIO_INTERNACIONAL = 5;
     private static final int ESPERA_ENVIO_NACIONAL = 3;
