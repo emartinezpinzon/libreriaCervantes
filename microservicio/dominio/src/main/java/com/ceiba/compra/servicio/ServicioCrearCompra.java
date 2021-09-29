@@ -2,7 +2,7 @@ package com.ceiba.compra.servicio;
 
 import com.ceiba.compra.modelo.entidad.Compra;
 import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
-import com.ceiba.dominio.excepcion.ExcepcionLibroNoRegistrado;
+import com.ceiba.dominio.excepcion.ExcepcionNoRegistrado;
 import com.ceiba.libro.modelo.dto.DtoLibro;
 import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
@@ -46,7 +46,7 @@ public class ServicioCrearCompra {
         boolean existe = repositorioLibro.existe(id);
 
         if (!existe)
-            throw new ExcepcionLibroNoRegistrado(LIBRO_NO_REGISTRADO);
+            throw new ExcepcionNoRegistrado(LIBRO_NO_REGISTRADO);
     }
 
     private void calcularFechaEntrega(Compra compra, DtoLibro libro) {

@@ -4,7 +4,7 @@ import com.ceiba.BasePrueba;
 import com.ceiba.compra.modelo.entidad.Compra;
 import com.ceiba.compra.puerto.repositorio.RepositorioCompra;
 import com.ceiba.compra.servicio.testdatabuilder.CompraTestDataBuilder;
-import com.ceiba.dominio.excepcion.ExcepcionLibroNoRegistrado;
+import com.ceiba.dominio.excepcion.ExcepcionNoRegistrado;
 import com.ceiba.libro.modelo.dto.DtoLibro;
 import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
@@ -59,7 +59,7 @@ public class ServicioCrearCompraTest {
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(false);
 
         // Act - Assert
-        BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionLibroNoRegistrado.class, LIBRO_NO_REGISTRADO);
+        BasePrueba.assertThrows(() -> servicioCrearCompra.ejecutar(compra), ExcepcionNoRegistrado.class, LIBRO_NO_REGISTRADO);
     }
 
     @Test
