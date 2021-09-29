@@ -1,9 +1,9 @@
 package com.ceiba.dominio.excepcion;
 
-public class ExcepcionLibroNoRegistrado extends RuntimeException {
+public class ExcepcionNoRegistrado extends RuntimeException {
     private static final long serialVersionUID = 1L;
 
-    public ExcepcionLibroNoRegistrado(String mensaje) {
+    public ExcepcionNoRegistrado(String mensaje) {
         super(mensaje);
     }
 }
