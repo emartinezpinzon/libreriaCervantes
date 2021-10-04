@@ -1,3 +1,18 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+
+	configurations.maybeCreate('pitest')
+	dependencies {
+		pitest 'org.pitest:pitest-junit5-plugin:0.12'
+	}
+}
+
+plugins {
+	id 'info.solidsoft.pitest'
+}
+
 apply plugin: 'java'
 apply plugin: 'jacoco'
 
@@ -10,9 +25,10 @@ repositories {
 }
 
 dependencies {
-	testImplementation project.ext.junit4
-	testImplementation project.ext.junit5
-	testImplementation project.ext.mockito
+	testImplementation project.ext.springboottest
+	testImplementation project.ext.mockitocore
+	testImplementation project.ext.mockitoinline
+	testImplementation project.ext.mockitojupiter
 	testImplementation project(':comun:comun-test')
 
 	implementation project(':comun:comun-dominio')
@@ -21,13 +37,25 @@ dependencies {
 	annotationProcessor project.ext.lombok
 }
 
+pitest {
+	testPlugin = 'junit5'
+	junit5PluginVersion = '0.14'
+	testSourceSets = [sourceSets.test]
+	mainSourceSets = [sourceSets.main]
+	useClasspathFile = true
+}
+
 jacocoTestReport {
 	reports {
 		xml.enabled true
 		html.enabled true
 	}
+
+	additionalSourceDirs files("../aplicacion/src/main/java")
+	additionalClassDirs files("../aplicacion/build/classes/java/main")
 }
 
 test {
+	useJUnitPlatform()
 	finalizedBy jacocoTestReport
 }
