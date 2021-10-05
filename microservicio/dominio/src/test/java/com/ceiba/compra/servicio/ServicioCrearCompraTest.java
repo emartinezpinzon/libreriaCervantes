@@ -9,20 +9,23 @@ import com.ceiba.libro.modelo.dto.DtoLibro;
 import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
 import com.ceiba.libro.servicio.testdatabuilder.DtoLibroTestDataBuilder;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ServicioCrearCompraTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+class ServicioCrearCompraTest {
 
     private static final String LIBRO_NO_REGISTRADO = "No hay registros del libro";
     private static final String DISTRIBUCION_INTERNACIONAL = "Internacional";
@@ -54,7 +57,7 @@ public class ServicioCrearCompraTest {
     private DtoLibro libro = new DtoLibroTestDataBuilder().build();
 
     @Test
-    public void validarLibroNoExistenciaPreviaRegistrarCompraTest() {
+    void validarLibroNoExistenciaPreviaRegistrarCompraTest() {
         // Arrange
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(false);
 
@@ -63,7 +66,7 @@ public class ServicioCrearCompraTest {
     }
 
     @Test
-    public void validarCrearCompraConExistenciaTest() {
+    void validarCrearCompraConExistenciaTest() {
         // Arrange
         Mockito.when(repositorioLibro.existe(Mockito.anyLong())).thenReturn(true);
         Mockito.when(daoLibro.buscarPorId(1L)).thenReturn(libro);
@@ -72,11 +75,11 @@ public class ServicioCrearCompraTest {
         servicioCrearCompra.ejecutar(compra);
 
         // Assert
-        Assert.assertEquals(LocalDate.now(), compra.getFechaEntrega());
+        assertEquals(LocalDate.now(), compra.getFechaEntrega());
     }
 
     @Test
-    public void validarCrearCompraSinExistenciaDistribucionNacionalTest() {
+    void validarCrearCompraSinExistenciaDistribucionNacionalTest() {
         // Arrange
         libro.setDistribucion(DISTRIBUCION_NACIONAL);
         compra.setCantidad(5);
@@ -93,11 +96,11 @@ public class ServicioCrearCompraTest {
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_NACIONAL);
 
         // Assert
-        Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
+        assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
     @Test
-    public void validarCrearCompraSinExistenciaDistribucionInternacionalTest() {
+    void validarCrearCompraSinExistenciaDistribucionInternacionalTest() {
         // Arrange
         libro.setDistribucion(DISTRIBUCION_INTERNACIONAL);
         compra.setCantidad(5);
@@ -114,7 +117,7 @@ public class ServicioCrearCompraTest {
             fechaEntregaEsperada = sumarDiasSinFinesDeSemana(fechaActual, ESPERA_ENVIO_INTERNACIONAL);
 
         // Assert
-        Assert.assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
+        assertEquals(fechaEntregaEsperada, compra.getFechaEntrega());
     }
 
     private LocalDate sumarDiasSinFinesDeSemana(LocalDateTime fechaActual, int dias) {

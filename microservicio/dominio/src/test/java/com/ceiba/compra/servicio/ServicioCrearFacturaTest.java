@@ -8,19 +8,22 @@ import com.ceiba.compra.puerto.repositorio.RepositorioFactura;
 import com.ceiba.compra.servicio.testdatabuilder.DtoCompraTestDataBuilder;
 import com.ceiba.compra.servicio.testdatabuilder.FacturaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
-import org.junit.Assert;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
-@RunWith(MockitoJUnitRunner.class)
-public class ServicioCrearFacturaTest {
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+class ServicioCrearFacturaTest {
 
     private static final String COMPRAS_NO_REGISTRADAS = "No hay compras registradas";
 
@@ -46,7 +49,7 @@ public class ServicioCrearFacturaTest {
     DtoCompra compra2 = new DtoCompraTestDataBuilder().build();
 
     @Test
-    public void validarCrearFacturaSinComprasRegistradasTest() {
+    void validarCrearFacturaSinComprasRegistradasTest() {
         // Arrange
         Mockito.when(daoCompra.listar()).thenReturn(compras);
 
@@ -55,7 +58,7 @@ public class ServicioCrearFacturaTest {
     }
 
     @Test
-    public void calcularCompraSinDescuentoTest() {
+    void calcularCompraSinDescuentoTest() {
         // Arrange
         compra1.setCategoria("Autoayuda");
         compras.add(compra1);
@@ -65,11 +68,11 @@ public class ServicioCrearFacturaTest {
         servicioCrearFactura.ejecutar(factura);
 
         // Assert
-        Assert.assertEquals(100000D, factura.getPrecioFinal(), 0.1);
+        assertEquals(100000D, factura.getPrecioFinal(), 0.1);
     }
 
     @Test
-    public void calcularDescuentosEducacionTest() {
+    void calcularDescuentosEducacionTest() {
         // Arrange
         compra1.setCategoria("Educación");
         compras.add(compra1);
@@ -79,11 +82,11 @@ public class ServicioCrearFacturaTest {
         servicioCrearFactura.ejecutar(factura);
 
         // Assert
-        Assert.assertEquals(80000D, factura.getPrecioFinal(), 0.1);
+        assertEquals(80000D, factura.getPrecioFinal(), 0.1);
     }
 
     @Test
-    public void calcularDescuentosNoEducacionTest() {
+    void calcularDescuentosNoEducacionTest() {
         // Arrange
         compra1.setCategoria("Literatura");
         compras.add(compra1);
@@ -97,6 +100,6 @@ public class ServicioCrearFacturaTest {
         servicioCrearFactura.ejecutar(factura);
 
         // Assert
-        Assert.assertEquals(150000D, factura.getPrecioFinal(), 0.1);
+        assertEquals(150000D, factura.getPrecioFinal(), 0.1);
     }
 }

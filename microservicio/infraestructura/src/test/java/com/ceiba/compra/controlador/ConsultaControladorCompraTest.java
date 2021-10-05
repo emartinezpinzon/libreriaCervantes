@@ -3,13 +3,14 @@ package com.ceiba.compra.controlador;
 import com.ceiba.ApplicationMock;
 import com.ceiba.libro.controlador.ConsultaControladorLibro;
 import org.hamcrest.core.IsNull;
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import static org.hamcrest.Matchers.hasSize;
@@ -17,23 +18,24 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-@RunWith(SpringRunner.class)
-@ContextConfiguration(classes = ApplicationMock.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(ConsultaControladorLibro.class)
-public class ConsultaControladorCompraTest {
+@ContextConfiguration(classes = ApplicationMock.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
+class ConsultaControladorCompraTest {
 
     @Autowired
     private MockMvc mockMvc;
 
     @Test
-    public void listar() throws Exception {
+    void listar() throws Exception {
         // Arrange
 
         // Act - Assert
         mockMvc.perform(get("/compra")
                 .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$", hasSize(2)))
+                .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].id", IsNull.notNullValue()))
                 .andExpect(jsonPath("$[0].libroId", IsNull.notNullValue()))
                 .andExpect(jsonPath("$[0].cantidad", IsNull.notNullValue()))

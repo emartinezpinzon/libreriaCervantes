@@ -12,6 +12,7 @@ plugins {
 	id 'org.springframework.boot' version  "${springBootVersion}"
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
+	id 'info.solidsoft.pitest' version '1.7.0'
 }
 
 
@@ -29,9 +30,9 @@ allprojects {
 	tasks.withType(JavaCompile) { options.encoding = 'UTF-8' }
 	tasks.withType(Test) { systemProperty "file.encoding", "UTF-8" }
 
-	project.ext.junit5 = ["org.junit.jupiter:junit-jupiter-api:5.3.1"]
-	project.ext.junit4 = ["junit:junit:4.12"]
-	project.ext.mockito = ['org.mockito:mockito-all:1.10.19']
+	project.ext.mockitocore = ['org.mockito:mockito-core:3.11.2']
+	project.ext.mockitoinline = ['org.mockito:mockito-inline:3.11.2']
+	project.ext.mockitojupiter = ['org.mockito:mockito-junit-jupiter:3.11.2']
 	project.ext.lombok = ["org.projectlombok:lombok:1.18.20"]
 	
 	project.ext.springboottest = ["org.springframework.boot:spring-boot-starter-test:${springBootVersion}"]
@@ -39,7 +40,13 @@ allprojects {
 	project.ext.springdevtools = ["org.springframework.boot:spring-boot-devtools:${springBootVersion}"]
 	project.ext.springbootundertow = ["org.springframework.boot:spring-boot-starter-undertow:${springBootVersion}"]
 	project.ext.springbootjasypt = ['com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1']
-	
+
+	// Se excluye JUnit 4
+	configurations {
+		runtime.exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+
+
 	project.ext.springtxt = [
 							  	"org.springframework:spring-tx:${springVersion}",
 							  	"org.springframework:spring-context:${springVersion}"

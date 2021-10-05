@@ -4,11 +4,11 @@ import com.ceiba.BasePrueba;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
 import com.ceiba.libro.servicio.testdatabuilder.LibroTestDataBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class LibroTest {
+class LibroTest {
     @Test
-    public void validarObligatorioTituloLibroTest() {
+    void validarObligatorioTituloLibroTest() {
         // Arrange
         LibroTestDataBuilder libroTestDataBuilder = new LibroTestDataBuilder().sinTitulo();
 
@@ -17,7 +17,7 @@ public class LibroTest {
     }
 
     @Test
-    public void validarObligatorioCategoriaLibroTest() {
+    void validarObligatorioCategoriaLibroTest() {
         // Arrange
         LibroTestDataBuilder libroTestDataBuilder = new LibroTestDataBuilder().sinCategoria();
 
@@ -26,7 +26,7 @@ public class LibroTest {
     }
 
     @Test
-    public void validarObligatorioDistribucionLibroTest() {
+    void validarObligatorioDistribucionLibroTest() {
         // Arrange
         LibroTestDataBuilder libroTestDataBuilder = new LibroTestDataBuilder().sinDistribucion();
 
@@ -35,7 +35,7 @@ public class LibroTest {
     }
 
     @Test
-    public void validarMenorDisponiblesLibroTest() {
+    void validarMenorDisponiblesLibroTest() {
         // Arrange
         LibroTestDataBuilder libroTestDataBuilder = new LibroTestDataBuilder().conDisponiblesNegativos();
 
@@ -44,7 +44,7 @@ public class LibroTest {
     }
 
     @Test
-    public void validarPositivoPrecioLibroTest() {
+    void validarPositivoPrecioLibroTest() {
         // Arrange
         LibroTestDataBuilder libroTestDataBuilder = new LibroTestDataBuilder().conPrecioCero();
 

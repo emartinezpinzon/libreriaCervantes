@@ -4,11 +4,11 @@ import com.ceiba.BasePrueba;
 import com.ceiba.compra.servicio.testdatabuilder.CompraTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionValorInvalido;
 import com.ceiba.dominio.excepcion.ExcepcionValorObligatorio;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-public class CompraTest {
+class CompraTest {
     @Test
-    public void validarObligatorioLibroIdCompraTest() {
+    void validarObligatorioLibroIdCompraTest() {
         // Arrange
         CompraTestDataBuilder compraTestDataBuilder = new CompraTestDataBuilder().sinLibroId();
 
@@ -17,7 +17,7 @@ public class CompraTest {
     }
 
     @Test
-    public void validarPositivoCantidadCompraTest() {
+    void validarPositivoCantidadCompraTest() {
         // Arrange
         CompraTestDataBuilder compraTestDataBuilder = new CompraTestDataBuilder().conCantidadCero();
 
