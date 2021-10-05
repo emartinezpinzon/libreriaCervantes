@@ -9,15 +9,20 @@ import com.ceiba.compra.servicio.testdatabuilder.DtoCompraTestDataBuilder;
 import com.ceiba.compra.servicio.testdatabuilder.FacturaTestDataBuilder;
 import com.ceiba.dominio.excepcion.ExcepcionSinDatos;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ServicioCrearFacturaTest {
 
     private static final String COMPRAS_NO_REGISTRADAS = "No hay compras registradas";

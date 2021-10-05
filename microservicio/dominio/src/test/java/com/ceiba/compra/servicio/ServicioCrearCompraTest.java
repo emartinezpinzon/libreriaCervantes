@@ -10,9 +10,12 @@ import com.ceiba.libro.puerto.dao.DaoLibro;
 import com.ceiba.libro.puerto.repositorio.RepositorioLibro;
 import com.ceiba.libro.servicio.testdatabuilder.DtoLibroTestDataBuilder;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
@@ -20,6 +23,8 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@ExtendWith(SpringExtension.class)
+@DirtiesContext(classMode = DirtiesContext.ClassMode.AFTER_EACH_TEST_METHOD)
 class ServicioCrearCompraTest {
 
     private static final String LIBRO_NO_REGISTRADO = "No hay registros del libro";
@@ -33,13 +38,13 @@ class ServicioCrearCompraTest {
     private LocalDateTime fechaActual = LocalDateTime.now();
     private LocalDate fechaEntregaEsperada;
 
-    @InjectMocks
+    @Mock
     private DaoLibro daoLibro;
 
-    @InjectMocks
+    @Mock
     private RepositorioCompra repositorioCompra;
 
-    @InjectMocks
+    @Mock
     private RepositorioLibro repositorioLibro;
 
     @InjectMocks
